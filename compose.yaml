@@ -1,0 +1,43 @@
+services:
+  frontend:
+    build:
+      context: ./passly
+    expose:
+      - "3000"
+
+  backend:
+    build:
+      context: ./Passly-backend
+    expose:
+      - "8000"
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      PASSLY_REDIS_URL: redis://redis:6379
+    depends_on:
+      - redis
+      - rabbitmq
+
+  redis:
+    image: redis:7-alpine
+    volumes:
+      - redis_data:/data
+
+  rabbitmq:
+    image: rabbitmq:4-management-alpine
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+  nginx:
+    image: nginx:alpine
+    depends_on:
+      - frontend
+      - backend
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+
+volumes:
+  redis_data:
+  rabbitmq_data:

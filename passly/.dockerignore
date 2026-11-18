@@ -1,0 +1,14 @@
+node_modules
+.git
+.svelte-kit
+build
+coverage
+tests
+.env*
+.npmrc
+DockerFile
+Dockerfile
+docker-compose*.yml
+docker-compose*.yaml
+compose*.yml
+compose*.yaml

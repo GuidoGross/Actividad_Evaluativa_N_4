@@ -1,0 +1,35 @@
+[project]
+name = "pasly-backend"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "Teo", email = "Teobenjaminmoravicki@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "django-qrcode>=0.3",
+    "fastapi[standard]>=0.141.1",
+    "pydantic>=2.13.5",
+    "pydantic-core>=2.46.5",
+    "schemas>=0.7.1",
+    "passlib[bcrypt]>=1.7.4",
+    "bcrypt==4.0.1",
+    "sqlalchemy>=2.0.52",
+    "pyjwt>=2.9.0",
+    "python-multipart>=0.0.18",
+    "redis>=5.0.0",
+    "qrcode[pil]>=8.2",
+    "pika>=1.3.2"
+]
+
+[project.scripts]
+pasly-backend = "pasly_backend:main"
+
+[build-system]
+requires = ["uv_build>=0.12.7,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
